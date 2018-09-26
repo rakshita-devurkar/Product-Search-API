@@ -1,0 +1,23 @@
+{
+  "name": "walmart-challenge",
+  "version": "1.0.0",
+  "description": "A product search API that returns a list of products for a given keyword",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": index.js
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rakshita-devurkar/Walmart-TakeHome.git"
+  },
+  "author": "Rakshita Devurkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rakshita-devurkar/Walmart-TakeHome/issues"
+  },
+  "homepage": "https://github.com/rakshita-devurkar/Walmart-TakeHome#readme",
+  "dependencies": {
+    "hapi": "^17.6.0"
+  }
+}
