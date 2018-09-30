@@ -1,29 +1,40 @@
 const Hapi = require('hapi');
-
+const data = require('./data.js');
+const ProductController = require('./src/controllers/product.js');
 const server = new Hapi.Server({
 	"host": "localhost",
 	"port": "3000"
 });
 
-const init = async () => {
+const setupRoutes = () => {
+	server.route({
+		method: 'GET',
+		path: '/',
+		options: {
+			handler: ProductController.get
+		}
+	});
 
+	// server.route({
+	// 	method: 'GET',
+	// 	path: '/product/{keyword}',
+	// 	options: {
+	// 		handler: ProductController.search
+	// 	}
+	// });
+}
+
+const init = async () => {
+	//populate database
+	data.loadData();
+	setupRoutes();
     await server.start();
-    console.log(`Server running at: ${server.info.uri}`);
+    return server;
 };
 
-process.on('unhandledRejection', (err) => {
 
-    console.log(err);
-    process.exit(1);
-});
-
-init();
-
-server.route({
-    method: 'GET',
-    path: '/',
-    handler: (request, h) => {
-
-        return 'Hello, world!';
-    }
+init().then(server => {
+	console.log(`Server running at: ${server.info.uri}`);
+}).catch(err => {
+	console.log(err);
 });
