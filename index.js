@@ -12,17 +12,17 @@ const setupRoutes = () => {
 		method: 'GET',
 		path: '/',
 		options: {
-			handler: ProductController.get
+			handler: ProductController.getProducts
 		}
 	});
 
-	// server.route({
-	// 	method: 'GET',
-	// 	path: '/product/{keyword}',
-	// 	options: {
-	// 		handler: ProductController.search
-	// 	}
-	// });
+	server.route({
+		method: 'GET',
+		path: '/product/{keyword}',
+		options: {
+			handler: ProductController.searchProducts
+		}
+	});
 }
 
 const init = async () => {

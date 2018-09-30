@@ -1,6 +1,6 @@
 const Mongoose = require('mongoose');
 
-Mongoose.connect('mongodb://localhost:27017/walmartDb');
+Mongoose.connect('mongodb://localhost:27017/walmartDb',{ useNewUrlParser: true });
 const db = Mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error'));

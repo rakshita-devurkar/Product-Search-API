@@ -41,7 +41,7 @@ const mapKeywords = (id, desc) => {
 				keywordsMap.set(mWord, id.toString());
 			}
 			else {
-					if(keywordsMap.get(mWord).includes(mWord) === false) {
+					if(!keywordsMap.get(mWord).toString().includes(mWord)) {
 						keywordsMap.set(mWord, keywordsMap.get(mWord)+','+id.toString());
 					}
 						// keywordsMap.set(mWord, keywordsMap.get(mWord).push(id));
@@ -52,7 +52,7 @@ const mapKeywords = (id, desc) => {
 
 const modifyWord = (word) => {
 	return word.replace(/[^\w\s]|_/g, "")
-         	   .replace(/\s+/g, " ").toLowerCase();
+         	   .replace(/\s+/g, "").toLowerCase();
 }
 
 module.exports = {
