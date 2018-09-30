@@ -1,4 +1,5 @@
 const Hapi = require('hapi');
+const db = require('./database').db;
 const data = require('./data.js');
 const ProductController = require('./src/controllers/product.js');
 const server = new Hapi.Server({
@@ -25,7 +26,6 @@ const setupRoutes = () => {
 }
 
 const init = async () => {
-	//populate database
 	data.loadData();
 	setupRoutes();
     await server.start();

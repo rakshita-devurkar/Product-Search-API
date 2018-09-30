@@ -1,6 +1,6 @@
 const fs = require('fs');
 const sync = require('sync-request');
-
+const Product = require('./src/models/product');
 var keywordsMap = new Map();
 
 const loadData = () => {
@@ -8,10 +8,26 @@ const loadData = () => {
 	for (var i = 0; i < productIds.length; i++) {
     var res = sync('GET','http://api.walmartlabs.com/v1/items/'+productIds[i]+'?format=json&apiKey=kjybrqfdgp3u4yv2qzcnjndj');
     if(JSON.parse(res.statusCode == 200)) {
+    	populateDb(JSON.parse(res.body));
     	mapKeywords(JSON.parse(res.body).itemId, JSON.parse(res.body).shortDescription);
     }
 }
 
+}
+
+const populateDb = (resBody) => {
+	const product = new Product({
+				'itemId': resBody.itemId,
+				'name': resBody.name,
+				'price': resBody.salePrice,
+				'image': resBody.mediumImage,
+			});
+			product.save((error, product) => {
+				if (error) {
+					console.error(error);
+				}
+				// console.log(product);
+			});
 }
 
 const mapKeywords = (id, desc) => {
@@ -41,6 +57,7 @@ const modifyWord = (word) => {
 
 module.exports = {
 	loadData,
-	keywordsMap
+	keywordsMap,
+	populateDb
 };
 

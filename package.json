@@ -19,6 +19,7 @@
   "homepage": "https://github.com/rakshita-devurkar/Walmart-TakeHome#readme",
   "dependencies": {
     "hapi": "^17.6.0",
+    "mongoose": "^5.3.0",
     "sync-request": "^6.0.0"
   }
 }
