@@ -11,8 +11,7 @@ const loadData = () => {
     	populateDb(JSON.parse(res.body));
     	mapKeywords(JSON.parse(res.body).itemId, JSON.parse(res.body).shortDescription);
     }
-}
-
+	}
 }
 
 const populateDb = (resBody) => {
@@ -37,14 +36,10 @@ const mapKeywords = (id, desc) => {
 		var mWord = modifyWord(word);
 		if(!stopwords.includes(mWord)) {
 			if(!keywordsMap.has(mWord)) {
-				// keywordsMap.set(mWord, [id]);
-				keywordsMap.set(mWord, id.toString());
+				keywordsMap.set(mWord, new Set([id]));
 			}
-			else {
-					if(!keywordsMap.get(mWord).toString().includes(mWord)) {
-						keywordsMap.set(mWord, keywordsMap.get(mWord)+','+id.toString());
-					}
-						// keywordsMap.set(mWord, keywordsMap.get(mWord).push(id));
+			else {	
+				keywordsMap.set(mWord, keywordsMap.get(mWord).add(id));
 			}
 		}
 	});
