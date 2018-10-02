@@ -1,6 +1,7 @@
 const fs = require('fs');
 const sync = require('sync-request');
 const Product = require('./src/models/product');
+const Boom = require('boom');
 var keywordsMap = new Map();
 
 const loadData = () => {
@@ -24,8 +25,8 @@ const populateDb = (resBody) => {
 			product.save((error, product) => {
 				if (error) {
 					console.error(error);
+					return Boom.badData('Unable to save data in Database');
 				}
-				// console.log(product);
 			});
 }
 
