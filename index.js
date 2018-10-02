@@ -1,3 +1,6 @@
+// require('babel-register') ({
+// 	presets: ['es2015', 'react'],
+// });
 const Hapi = require('hapi');
 const db = require('./database').db;
 const data = require('./data.js');
@@ -25,8 +28,17 @@ const setupRoutes = () => {
 	});
 }
 
+
 const init = async () => {
 	data.loadData();
+	await server.register({plugin: require('vision')});
+	await server.views({
+			engines: {
+				js: require('hapi-react-views')
+			},
+			relativeTo: __dirname,
+			path: 'src/views'
+	});
 	setupRoutes();
     await server.start();
     return server;
@@ -38,3 +50,4 @@ init().then(server => {
 }).catch(err => {
 	console.log(err);
 });
+
