@@ -4,21 +4,22 @@ import React from 'react';
 const productStyle = {
 	background: 'white',
 	margin: '30px',
+	marginTop: '20px',
 	width: '200px',
-	border: '2px solid gray', 
-	borderRadius: '15 px',
-	padding: '60px'
+	border: '1px solid #cfcfcf',
+	padding: '25px 55px 35px 55px'
 }
 
 const imageStyle = {
 	overflow: 'hidden',
 	borderRadius: '2px 2px 0 0',
 	maxHeight: '200px',
-	img: {
-			'cursor': 'zoom-in',
-			'width': '100%',
-			'height': 'auto',
-		}
+}
+
+const img = {
+	cursor: 'zoom-in',
+	width: '100%',
+	height: 'auto',
 }
 
 const nameStyle = {
@@ -49,10 +50,10 @@ export default class Product extends React.Component {
 		return (
 			<div style={productStyle}>
 				<div style={imageStyle}>
-					<img style={imageStyle.img} src = {imageUrl}/>
+					<img style={img} src = {imageUrl}/>
 				</div>
+				<p style={priceStyle}>$ {price}</p>
 				<h4 style={nameStyle}>{name}</h4>
-				<p style={priceStyle}>{price}</p>
 			</div>
 		);
 	}

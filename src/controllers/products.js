@@ -6,7 +6,7 @@ exports.getProducts = (request, h) => {
 	return Product.find({}).exec().then((products) => {
 		if(products === null) return Boom.notFound('No products found.');
 		return h.view('products',{
-			productsData:products
+			productData: products
 		});
 	}).catch((err) => {
 		return Boom.serverUnavailable('Cannot fetch from database');
@@ -21,11 +21,11 @@ exports.searchProducts = (request, h) => {
 	
 	return Product.find({itemId: {$in: Array.from(itemIds)}}).exec().then((products) => {
 		if(products === null) return Boom.notFound('No products found');
-		return products;
-		// return h.view('products', {
-		// 	productsData: product
-		// });
+		return h.view('products',{
+			productData: products
+		});
 	}).catch((err) => {
+		console.log(err);
 		return Boom.serverUnavailable('Cannot fetch from database');
 	});
 }

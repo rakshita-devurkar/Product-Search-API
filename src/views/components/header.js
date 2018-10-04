@@ -26,8 +26,6 @@ const searchBar = {
 }
 
 const searchButton = {
-	backgroundImage: 'url(search.png)',
-    backgroundRepeat: 'no-repeat',
     border: '0.5px solid black',
 	borderRadius: '0 2px 2px 0',
     background: '#81adf4',
@@ -43,24 +41,37 @@ const title = {
 	color: '#81adf4',
 }
 
+
 export default class Header extends React.Component {
 
 	constructor(props) {
-		super();
+		super(props);
 		this.state = {
 			keyword: '',	
 		}
-
 	}
+
+	updateKeyword(e) {
+		this.setState({keyword: e.target.value});
+	}
+
+	handleSearch(e){
+		var searchWord = this.state.keyword;
+		fetch('http://localhost:3000/product/'+searchWord, {
+      		method: 'GET',
+		});
+	}
+
 	render() {
 			return (
 				<div style={header}>
 							<div style={search}>
 								<div>
-									<input style={searchBar} type="search" ref="searchBar" placeholder="Enter product name"/>
+									<input style={searchBar} type="search" value={this.state.keyword} placeholder="Enter product name"
+									onChange={this.updateKeyword.bind(this)}/>
               					</div>
               					<div>
-              						<button style={searchButton} type="submit">Search</button>
+              						<button style={searchButton} type="submit" onClick={this.handleSearch}>Search</button>
               					</div>
               				</div>
 				</div>
