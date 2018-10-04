@@ -5,7 +5,8 @@ import Header from './components/header';
 const ProductsStyle = {
 	display: 'flex',
 	flexDirection:'row',
-	flexWrap:'wrap'
+	flexWrap:'wrap',
+	marginTop: '10%'
 }
 
 const layout = {
@@ -16,7 +17,7 @@ const layout = {
 export default class Products extends React.Component {
 	render() {
 			return (
-				<div>
+				<div style={layout}>
 					<Header></Header>
 					<div style={ProductsStyle}>
 					{this.props.productData.map(product => {
