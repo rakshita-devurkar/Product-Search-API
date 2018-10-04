@@ -1,10 +1,14 @@
-// require('babel-register') ({
-// 	presets: ['es2015', 'react'],
-// });
+require('babel-core/register')({
+	presets: ['react','env']
+});
+
 const Hapi = require('hapi');
+const Inert = require('inert');
+const Vision = require('vision');
+const Path = require('path');
 const db = require('./database').db;
 const data = require('./data.js');
-const ProductController = require('./src/controllers/product.js');
+const ProductController = require('./src/controllers/products.js');
 const server = new Hapi.Server({
 	"host": "localhost",
 	"port": "3000"
@@ -31,13 +35,13 @@ const setupRoutes = () => {
 
 const init = async () => {
 	data.loadData();
-	await server.register({plugin: require('vision')});
+	await server.register([Inert, Vision]);
 	await server.views({
 			engines: {
 				js: require('hapi-react-views')
 			},
 			relativeTo: __dirname,
-			path: 'src/views'
+			path: 'src/views',
 	});
 	setupRoutes();
     await server.start();

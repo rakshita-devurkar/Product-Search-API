@@ -1,6 +1,6 @@
 const fs = require('fs');
 const sync = require('sync-request');
-const Product = require('./src/models/product');
+const Product = require('./src/models/products');
 const Boom = require('boom');
 var keywordsMap = new Map();
 

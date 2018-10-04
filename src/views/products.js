@@ -1,40 +1,30 @@
 import React from 'react';
 import Product from './components/product';
+import Header from './components/header';
 
-var productsData = [
-{
-	"imageUrl": "https://i5.walmartimages.com/asr/b3da0c76-61b4-4363-b809-091c413dce10_1.41251691f6bc375272fe38f660dcd1dd.jpeg?odnHeight=180&odnWidth=180&odnBg=FFFFFF",
-	"name" : "Slumber 1 - 8'' Spring Mattress-In-a-Box, Multiple Sizes",
-	"price" : "99"
-},
-{
-	"imageUrl": "https://i5.walmartimages.com/asr/bfb92a9b-555e-4f9d-bb8f-f4651ca3c485_1.a6a363462ce892cad12e75edb278c6d5.jpeg?odnHeight=180&odnWidth=180&odnBg=FFFFFF",
-	"name": "\"RCA LED55G55R120Q 55\"\" 1080p 120Hz LED HDTV\"",
-	"price": "409.49"
-},
-{
-	"imageUrl": "https://i5.walmartimages.com/asr/b3da0c76-61b4-4363-b809-091c413dce10_1.41251691f6bc375272fe38f660dcd1dd.jpeg?odnHeight=180&odnWidth=180&odnBg=FFFFFF",
-	"name" : "Slumber 1 - 8'' Spring Mattress-In-a-Box, Multiple Sizes",
-	"price" : "99"
-},
-{
-	"imageUrl": "https://i5.walmartimages.com/asr/bfb92a9b-555e-4f9d-bb8f-f4651ca3c485_1.a6a363462ce892cad12e75edb278c6d5.jpeg?odnHeight=180&odnWidth=180&odnBg=FFFFFF",
-	"name": "\"RCA LED55G55R120Q 55\"\" 1080p 120Hz LED HDTV\"",
-	"price": "409.49"
-},
-{
-	"imageUrl": "https://i5.walmartimages.com/asr/b3da0c76-61b4-4363-b809-091c413dce10_1.41251691f6bc375272fe38f660dcd1dd.jpeg?odnHeight=180&odnWidth=180&odnBg=FFFFFF",
-	"name" : "Slumber 1 - 8'' Spring Mattress-In-a-Box, Multiple Sizes",
-	"price" : "99"
-},
-];
+const ProductsStyle = {
+	display: 'flex',
+	flexDirection:'row',
+	flexWrap:'wrap',
+	marginTop: '10%'
+}
+
+const layout = {
+	display: 'flex',
+	flexDirection: 'column'
+}
 
 export default class Products extends React.Component {
 	render() {
-		productsData.map(product => {
 			return (
-				<Product imageUrl={product.image} name={product.name} price={product.price}/>
-			);
-		}); 
+				<div style={layout}>
+					<Header></Header>
+					<div style={ProductsStyle}>
+					{this.props.productData.map(product => {
+						return <Product key = {product.itemId} imageUrl = {product.image} name={product.name} price={product.price}> </Product> 
+					})}
+					</div>
+				</div>
+			); 
 	}
 }
