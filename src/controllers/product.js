@@ -15,7 +15,7 @@ exports.getProducts = (request, h) => {
 }
 
 exports.searchProducts = (request, h) => {
-	var itemIds = data.keywordsMap.get(request.params.keyword);
+	var itemIds = data.keywordsMap.get(request.params.keyword.toLowerCase());
 	if(!itemIds) {
 		return Boom.notFound('No products found');
 	}
