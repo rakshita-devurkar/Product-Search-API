@@ -9,10 +9,14 @@ const loadData = () => {
 	if(productIds.length==0) return Boom.notFound("Could not read Item id data file");
 	for (var i = 0; i < productIds.length; i++) {
     var res = sync('GET','http://api.walmartlabs.com/v1/items/'+productIds[i]+'?format=json&apiKey=kjybrqfdgp3u4yv2qzcnjndj');
-    if(JSON.parse(res.statusCode == 200)) {
-    	populateDb(JSON.parse(res.body));
-    	mapKeywords(JSON.parse(res.body).itemId, JSON.parse(res.body).shortDescription);
-    }
+	    var resBody = JSON.parse(res.body);
+	    if(JSON.parse(res.statusCode == 200)) {
+	    	populateDb(resBody);
+	    	mapKeywords(resBody.itemId, resBody.shortDescription+resBody.longDescription);
+	    }
+	    else {
+	    	return Boom.notFound("Could not fetch data from Walmart API for"+res.url);
+		}
 	}
 }
 
