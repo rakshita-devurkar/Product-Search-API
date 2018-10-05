@@ -1,7 +1,7 @@
 # Product-Search-API
 
 This repository contains the Walmart [Take-Home Challenge](https://gist.github.com/daniyalzade/8e32cd266aebd6d2ce35). 
-The REST APIs are written in HapiJS framework and the views are rendered using the [hapi-react-views](https://github.com/jedireza/hapi-react-views) 
+The REST APIs to get all products and search for products with a given keyword are written in HapiJS framework and the views are rendered using the [hapi-react-views](https://github.com/jedireza/hapi-react-views) 
 engine. [Sync-request](https://www.npmjs.com/package/sync-request) is used to fetch data from the Walmart API serially.
 
 ### Prerequisites
