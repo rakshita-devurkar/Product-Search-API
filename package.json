@@ -4,7 +4,7 @@
   "description": "A product search API that returns a list of products for a given keyword",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "lab -c -I __core-js_shared__",
     "start": "node index.js"
   },
   "repository": {
@@ -25,9 +25,11 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "boom": "^7.2.0",
+    "code": "^5.2.0",
     "hapi": "^17.6.0",
     "hapi-react-views": "^10.0.0",
     "inert": "^5.0.0",
+    "lab": "^16.1.0",
     "mongoose": "^5.3.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",

@@ -45,13 +45,9 @@ const init = async () => {
 	});
 	setupRoutes();
     await server.start();
-    return server;
+    console.log(`Server running at: ${server.info.uri}`);
 };
 
+init();
 
-init().then(server => {
-	console.log(`Server running at: ${server.info.uri}`);
-}).catch(err => {
-	console.log(err);
-});
-
+module.exports = server;
