@@ -5,8 +5,13 @@ const db = Mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error'));
 //Do Boom error handling here
-db.once('open', function callback() {
-    console.log('Connection with database succeeded.');
+db.once('open', function (){
+	db.dropCollection("products", function (err, result) {
+        if (err && result!=null) {
+            console.log("Could not delete existing data");
+        }
+    });
+    console.log('Connected to database.');
 });
 
 module.exports = db;

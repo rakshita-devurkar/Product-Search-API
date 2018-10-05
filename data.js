@@ -6,6 +6,7 @@ var keywordsMap = new Map();
 
 const loadData = () => {
 	var productIds = fs.readFileSync('data.csv').toString().split(",\n");
+	if(productIds.length==0) return Boom.notFound("Could not read Item id data file");
 	for (var i = 0; i < productIds.length; i++) {
     var res = sync('GET','http://api.walmartlabs.com/v1/items/'+productIds[i]+'?format=json&apiKey=kjybrqfdgp3u4yv2qzcnjndj');
     if(JSON.parse(res.statusCode == 200)) {
