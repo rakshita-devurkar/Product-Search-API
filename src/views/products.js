@@ -16,6 +16,17 @@ const layout = {
 
 export default class Products extends React.Component {
 	render() {
+		if(this.props.productData.length==0) {
+			return (
+				<div style={layout}>
+				<Header></Header>
+				<div style={ProductsStyle}>
+				<h4>No Products Found!</h4>
+				</div>
+				</div>
+			);
+		}
+		else {
 			return (
 				<div style={layout}>
 					<Header></Header>
@@ -26,5 +37,6 @@ export default class Products extends React.Component {
 					</div>
 				</div>
 			); 
+		}
 	}
 }

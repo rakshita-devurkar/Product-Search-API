@@ -16,7 +16,9 @@ exports.getProducts = (request, h) => {
 exports.searchProducts = (request, h) => {
 	var itemIds = data.keywordsMap.get(request.params.keyword.toLowerCase());
 	if(!itemIds) {
-		return Boom.notFound('No products found');
+		return h.view('products',{
+			productData: []
+		});
 	}
 	
 	return Product.find({itemId: {$in: Array.from(itemIds)}}).exec().then((products) => {
