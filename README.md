@@ -6,7 +6,8 @@ engine. [Sync-request](https://www.npmjs.com/package/sync-request) is used to fe
 
 ### Prerequisites
 
-You need to have [Node.js](https://nodejs.org/en/) installed and [MongoDB](https://docs.mongodb.com/manual/installation/) installed and running.
+1) Install [Node.js](https://nodejs.org/en/) 
+2) Install [MongoDB](https://docs.mongodb.com/manual/installation/) and run ```$mongod```
 
 ### Installing
 1) Clone the repository
