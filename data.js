@@ -5,8 +5,12 @@ const Boom = require('boom');
 var keywordsMap = new Map();
 
 const loadData = () => {
+
+	//Read input file to get all the Item ids
 	var productIds = fs.readFileSync('data.csv').toString().split(",\n");
 	if(productIds.length==0) return Boom.notFound("Could not read Item id data file");
+	
+	//TODO: Since async-request takes a lot of time, it should be replaced with a async requests call with delay or async.queue
 	for (var i = 0; i < productIds.length; i++) {
     var res = sync('GET','http://api.walmartlabs.com/v1/items/'+productIds[i]+'?format=json&apiKey=kjybrqfdgp3u4yv2qzcnjndj');
 	    var resBody = JSON.parse(res.body);
@@ -20,6 +24,7 @@ const loadData = () => {
 	}
 }
 
+//Save the name,image and price in Db for rendering it in the views
 const populateDb = (resBody) => {
 	const product = new Product({
 				'itemId': resBody.itemId,
@@ -35,6 +40,13 @@ const populateDb = (resBody) => {
 			});
 }
 
+
+/* Search function
+   1) Eliminate all the stop words from the short and long description
+   2) Add each word to the Map => Key: word , Value: Set of IDs (Set - avoids duplicates)
+   3) Get the Item ids for a given keyword by getting the value from the map
+   **For larger data, A trie could be used to store the words and list of Ids**
+*/
 const mapKeywords = (id, desc) => {
 	var stopwords = [ "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by", "could", "did", "do", "does", "doing", "down", "during", "each", "few", "for", "from", "further", "had", "has", "have", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in", "into", "is", "it", "it's", "its", "itself", "let's", "me", "more", "most", "my", "myself", "nor", "of", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "she", "she'd", "she'll", "she's", "should", "so", "some", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "we", "we'd", "we'll", "we're", "we've", "were", "what", "what's", "when", "when's", "where", "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", "would", "you", "yet", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves" ];
 	var words = desc.split(' ');

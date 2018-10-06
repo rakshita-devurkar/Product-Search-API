@@ -2,6 +2,10 @@ import React from 'react';
 import Product from './components/product';
 import Header from './components/header';
 
+/*
+TODO: Add the styling in a different file and bundle it with Webpack
+*/
+
 const ProductsStyle = {
 	display: 'flex',
 	flexDirection:'row',

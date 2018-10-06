@@ -1,5 +1,9 @@
 import React from 'react';
 
+/*
+TODO: Add the styling in a different file and bundle it with Webpack
+*/
+
 const header = {
 	background: '#f6f6f6',
 	position: 'fixed',
@@ -38,11 +42,14 @@ const searchButton = {
 const title = {
 	fontSize: '30px',
 	fontWeight: '700',
-	color: '#81adf4',
+	color: 'black',
 }
 
 
 export default class Header extends React.Component {
+
+	/*This is the code for the Search Bar and the button that will be used once the server side rendering
+	of React components to handle events is completed.
 
 	constructor(props) {
 		super(props);
@@ -64,17 +71,25 @@ export default class Header extends React.Component {
 
 	render() {
 			return (
+			 	<div style={header}>
+			 				<div style={search}>
+			 					<div>
+			 						<input style={searchBar} type="search" value={this.state.keyword} placeholder="Enter product name"
+			 						onChange={this.updateKeyword.bind(this)}/>
+               					</div>
+               					<div>
+               						<button style={searchButton} type="submit" onClick={this.handleSearch}>Search</button>
+               					</div>
+               				</div>
+			 	</div>
+			);
+	}*/
+
+	render() {
+		return (
 				<div style={header}>
-							<div style={search}>
-								<div>
-									<input style={searchBar} type="search" value={this.state.keyword} placeholder="Enter product name"
-									onChange={this.updateKeyword.bind(this)}/>
-              					</div>
-              					<div>
-              						<button style={searchButton} type="submit" onClick={this.handleSearch}>Search</button>
-              					</div>
-              				</div>
+				<h4 style={title}>Walmart Product Search</h4>
 				</div>
-			); 
+			);
 	}
 }

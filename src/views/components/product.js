@@ -1,5 +1,9 @@
 import React from 'react';
 
+/*
+TODO: Add the styling in a different file and bundle it with Webpack
+*/
+
 const productStyle = {
 	background: 'white',
 	margin: '30px',

@@ -24,16 +24,6 @@ lab.experiment("All API Tests", function() {
 		await server.stop();
 	});
 
-	lab.test("Get products with non existing keyword", async function() {
-		const options = {
-			method: "GET",
-			url: "/product/hapijs"
-		};
-		const response = await server.inject(options);
-		Code.expect(response.result.message).to.equal("No products found");
-		await server.stop();
-	});
-
 	lab.test("Invalid Url", async function() {
 		const options = {
 			method: "GET",
